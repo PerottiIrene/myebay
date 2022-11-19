@@ -1,5 +1,7 @@
 package it.prova.myebay.web.controller;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -8,8 +10,10 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -79,6 +83,34 @@ public class UtenteController {
 		utenteService.inserisciNuovo(utenteDTO.buildUtenteModel(true));
 
 		redirectAttrs.addFlashAttribute("successMessage", "Operazione eseguita correttamente");
+		return "redirect:/utente";
+	}
+	
+	@GetMapping("/edit/{idUtente}")
+	public String edit(@PathVariable(required = true) Long idUtente, Model model) {
+		Utente utenteModel = utenteService.caricaSingoloUtenteConRuoli(idUtente);
+		model.addAttribute("edit_utente_attr", UtenteDTO.buildUtenteDTOFromModel(utenteModel,true));
+		model.addAttribute("ruoli_totali_attr", RuoloDTO.createRuoloDTOListFromModelList(ruoloService.listAll()));
+		return "utente/edit";
+	}
+
+	@PostMapping("/update")
+	public String update(@Validated(ValidationNoPassword.class) @ModelAttribute("edit_utente_attr") UtenteDTO utenteDTO,
+			BindingResult result, Model model, RedirectAttributes redirectAttrs, HttpServletRequest request) {
+
+		if (result.hasErrors()) {
+			model.addAttribute("ruoli_totali_attr", RuoloDTO.createRuoloDTOListFromModelList(ruoloService.listAll()));
+			return "utente/edit";
+		}
+		utenteService.aggiorna(utenteDTO.buildUtenteModel(true));
+
+		redirectAttrs.addFlashAttribute("successMessage", "Operazione eseguita correttamente");
+		return "redirect:/utente";
+	}
+
+	@PostMapping("/cambiaStato")
+	public String cambiaStato(@RequestParam(name = "idUtenteForChangingStato", required = true) Long idUtente) {
+		utenteService.changeUserAbilitation(idUtente);
 		return "redirect:/utente";
 	}
 
