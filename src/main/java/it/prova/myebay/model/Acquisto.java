@@ -30,6 +30,8 @@ public class Acquisto {
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "utente_id")
 	private Utente utenteAcquirente;
+	
+	public Acquisto() {}
 
 	public Acquisto(Long id, String descrizione, Integer prezzo, Date data, Utente utenteAcquirente) {
 		super();

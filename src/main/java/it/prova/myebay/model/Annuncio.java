@@ -41,6 +41,8 @@ public class Annuncio {
 	@ManyToMany
 	@JoinTable(name = "annuncio_categoria", joinColumns = @JoinColumn(name = "annuncio_id", referencedColumnName = "ID"), inverseJoinColumns = @JoinColumn(name = "categoria_id", referencedColumnName = "ID"))
 	private Set<Categoria> categorie = new HashSet<>();
+	
+	public Annuncio() {}
 
 	public Annuncio(Long id, String testoAnnuncio, Integer prezzo, boolean aperto, Date data, Utente utenteInserimento,
 			Set<Categoria> categorie) {
