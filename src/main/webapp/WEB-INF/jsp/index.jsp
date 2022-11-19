@@ -1,3 +1,6 @@
+<%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
+<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <!doctype html>
 <html lang="it" class="h-100" >
 	 <head>
@@ -68,7 +71,7 @@
 				    </div>
 				    <div class='card-body'>
 		
-							<form method="post" action="${pageContext.request.contextPath}/annuncio/list" class="row g-3" >
+							<form method="post" action="${pageContext.request.contextPath}/annuncio/search" class="row g-3" >
 							
 							
 								<div class="col-md-6">
@@ -81,7 +84,12 @@
 									<input type="number" name="prezzo" id="prezzo" class="form-control" placeholder="Inserire il prezzo"  >
 								</div>
 							
-					            
+							<div class="form-check">
+							<c:forEach items="${categorie }" var="categorieItem">
+							 <input class="form-check-input" type="checkbox" name="categorie" value="${categorieItem.id }"  >${categorieItem.descrizione}<br>
+								</c:forEach>
+								</div>
+					           
 								
 								<div class="col-12">
 									<button type="submit" name="submit" value="submit" id="submit" class="btn btn-primary">Cerca Annuncio</button>
