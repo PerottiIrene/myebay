@@ -29,7 +29,7 @@
 			    </div>
 			    <div class='card-body'> 
 
-			    	<a href="${pageContext.request.contextPath}/annuncio/home" class='btn btn-outline-secondary' >
+			    	<a href="${pageContext.request.contextPath}/home/" class='btn btn-outline-secondary' >
 				            <i class='fa fa-chevron-left'></i> Torna alla Ricerca
 				        </a>
 			    
@@ -39,8 +39,6 @@
 			                    <tr>
 			                        <th>testo annuncio</th>
 			                        <th>prezzo</th>
-			                        <th>data inserimento</th>
-			                        <th>Stato</th>
 			                        <th>Azioni</th>
 			                    </tr>
 			                </thead>
@@ -49,12 +47,8 @@
 									<tr>
 										<td>${annuncioItem.testoAnnuncio }</td>
 										<td>${annuncioItem.prezzo }</td>
-										<td>${annuncioItem.data }</td>
-										<td>${annuncioItem.aperto }</td>
 										<td>
 											<a class="btn btn-sm btn-outline-secondary" href="${pageContext.request.contextPath}/annuncio/show/${annuncioItem.id }">Dettaglio</a>
-											<a class="btn  btn-sm btn-outline-primary ml-2 mr-2" href="${pageContext.request.contextPath}/annuncio/edit/${annuncioItem.id }">Edit</a>
-											<a class="btn  btn-sm btn-outline-primary ml-2 mr-2" href="${pageContext.request.contextPath}/annuncio/delete/${annuncioItem.id }">Elimina</a>
 										</td>
 									</tr>
 								</c:forEach>

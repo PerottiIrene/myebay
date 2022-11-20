@@ -38,16 +38,10 @@
 			    	</dl>
 			    	
 			    	<dl class="row">
-					  <dt class="col-sm-3 text-right">Data:</dt>
+					  <dt class="col-sm-3 text-right">Data annuncio:</dt>
 					  <dd class="col-sm-9">${show_annuncio_attr.data}</dd>
 			    	</dl>
 			    	
-			    	<dl class="row">
-					  <dt class="col-sm-3 text-right">Ruoli:</dt>
-					  <c:forEach items="${show_annuncio_attr.ruoli }" var="ruoloItem">
-					 <dd class="col-sm-9">${ruoloItem.descrizione}</dd>
-					 </c:forEach>
-			    	</dl>
 			    	
 			    	
 					</div>
@@ -62,7 +56,7 @@
 			    </div>
 			    
 			    <div class='card-footer'>
-			        <a href="${pageContext.request.contextPath }/annuncio/" class='btn btn-outline-secondary' style='width:80px'>
+			        <a href="${pageContext.request.contextPath }/annuncio/list" class='btn btn-outline-secondary' style='width:80px'>
 			            <i class='fa fa-chevron-left'></i> Back
 			        </a>
 			    </div>
