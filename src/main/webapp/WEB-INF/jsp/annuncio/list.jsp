@@ -27,9 +27,9 @@
 			    <div class='card-header'>
 			        <h5>Lista dei risultati</h5> 
 			    </div>
-			    <div class='card-body'>
-			    	<a class="btn btn-primary " href="${pageContext.request.contextPath}/annuncio/insert">Add New</a>
-			    	<a href="${pageContext.request.contextPath}/annuncio/search" class='btn btn-outline-secondary' >
+			    <div class='card-body'> 
+
+			    	<a href="${pageContext.request.contextPath}/annuncio/home" class='btn btn-outline-secondary' >
 				            <i class='fa fa-chevron-left'></i> Torna alla Ricerca
 				        </a>
 			    
@@ -45,7 +45,7 @@
 			                    </tr>
 			                </thead>
 			                <tbody>
-			                	<c:forEach items="${annuncio_list_attribute }" var="annuncioItem">
+			                	<c:forEach items="${annuncio_list_attribute}" var="annuncioItem">
 									<tr>
 										<td>${annuncioItem.testoAnnuncio }</td>
 										<td>${annuncioItem.prezzo }</td>
@@ -54,7 +54,7 @@
 										<td>
 											<a class="btn btn-sm btn-outline-secondary" href="${pageContext.request.contextPath}/annuncio/show/${annuncioItem.id }">Dettaglio</a>
 											<a class="btn  btn-sm btn-outline-primary ml-2 mr-2" href="${pageContext.request.contextPath}/annuncio/edit/${annuncioItem.id }">Edit</a>
-											<a id="changeStatoLink_#_${annuncioItem.id }" class="btn btn-outline-${annuncioItem.isAttivo()?'danger':'success'} btn-sm link-for-modal" data-bs-toggle="modal" data-bs-target="#confirmOperationModal"  >${annuncioItem.isAttivo()?'Disabilita':'Abilita'}</a>
+											<a class="btn  btn-sm btn-outline-primary ml-2 mr-2" href="${pageContext.request.contextPath}/annuncio/delete/${annuncioItem.id }">Elimina</a>
 										</td>
 									</tr>
 								</c:forEach>
