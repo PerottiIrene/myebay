@@ -6,18 +6,28 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+
 import it.prova.myebay.model.Annuncio;
 import it.prova.myebay.model.Categoria;
-import it.prova.myebay.model.Ruolo;
 import it.prova.myebay.model.Utente;
 
 public class AnnuncioDTO {
 	
 	private Long id;
+	
+	@NotBlank(message = "{testoannuncio.notblank}")
 	private String testoAnnuncio;
+	
+	@NotNull(message = "{prezzo.notnull}")
 	private Integer prezzo;
+	
 	private boolean aperto;
+	
+	@NotNull(message = "{data.notnull}")
 	private Date data;
+	
 	private Utente utenteInserimento;
 	private Set<Categoria> categorie=new HashSet<>();
 	

@@ -1,5 +1,6 @@
 package it.prova.myebay.web.controller;
 
+import javax.naming.spi.DirStateFactory.Result;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -80,6 +81,7 @@ public class UtenteController {
 			model.addAttribute("ruoli_totali_attr", RuoloDTO.createRuoloDTOListFromModelList(ruoloService.listAll()));
 			return "utente/insert";
 		}
+		
 		utenteService.inserisciNuovo(utenteDTO.buildUtenteModel(true));
 
 		redirectAttrs.addFlashAttribute("successMessage", "Operazione eseguita correttamente");
@@ -112,6 +114,15 @@ public class UtenteController {
 	public String cambiaStato(@RequestParam(name = "idUtenteForChangingStato", required = true) Long idUtente) {
 		utenteService.changeUserAbilitation(idUtente);
 		return "redirect:/utente";
+	}
+	
+	@GetMapping("/show/{idUtente}")
+	public String showUtente(@PathVariable(required = true) Long idUtente, Model model) {
+		
+		UtenteDTO utenteResult=UtenteDTO.buildUtenteDTOFromModel(utenteService.caricaSingoloUtenteConRuoli(idUtente), true);
+		model.addAttribute("show_utente_attr", utenteResult);
+		System.out.println(utenteResult.getRuoli().size());
+		return "utente/show";
 	}
 
 }

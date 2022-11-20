@@ -5,7 +5,7 @@ import java.util.List;
 import it.prova.myebay.model.Ruolo;
 
 public interface RuoloService {
-public List<Ruolo> listAll() ;
+    public List<Ruolo> listAll() ;
 	
 	public Ruolo caricaSingoloElemento(Long id) ;
 
@@ -17,4 +17,5 @@ public List<Ruolo> listAll() ;
 
 	public Ruolo cercaPerDescrizioneECodice(String descrizione, String codice) ;
 
+	
 }

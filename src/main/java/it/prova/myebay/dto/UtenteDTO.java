@@ -2,7 +2,9 @@ package it.prova.myebay.dto;
 
 import java.util.Arrays;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import javax.validation.constraints.NotBlank;
@@ -40,6 +42,7 @@ public class UtenteDTO {
 	private StatoUtente stato;
 
 	private Long[] ruoliIds;
+	private Set<RuoloDTO> ruoli=new HashSet();
 
 	public UtenteDTO() {
 	}
@@ -51,6 +54,17 @@ public class UtenteDTO {
 		this.nome = nome;
 		this.cognome = cognome;
 		this.stato = stato;
+	}
+	
+	public UtenteDTO(Long id, String username,String nome,String cognome,
+			StatoUtente stato, List<RuoloDTO> ruoli) {
+		super();
+		this.id = id;
+		this.username = username;
+		this.nome = nome;
+		this.cognome = cognome;
+		this.stato = stato;
+		this.ruoli = new HashSet<>(ruoli);
 	}
 
 	public Long getId() {
@@ -125,6 +139,14 @@ public class UtenteDTO {
 		this.ruoliIds = ruoliIds;
 	}
 	
+	public Set<RuoloDTO> getRuoli() {
+		return ruoli;
+	}
+
+	public void setRuoli(Set<RuoloDTO> ruoli) {
+		this.ruoli = ruoli;
+	}
+
 	public boolean isAttivo() {
 		return this.stato != null && this.stato.equals(StatoUtente.ATTIVO);
 	}
@@ -141,7 +163,7 @@ public class UtenteDTO {
 	// niente password...
 	public static UtenteDTO buildUtenteDTOFromModel(Utente utenteModel, boolean includeRoles) {
 		UtenteDTO result = new UtenteDTO(utenteModel.getId(), utenteModel.getUsername(), utenteModel.getNome(),
-				utenteModel.getCognome(), utenteModel.getStato());
+				utenteModel.getCognome(), utenteModel.getStato(),RuoloDTO.createRuoloDTOListFromModelSet(utenteModel.getRuoli()));
 
 		if (includeRoles && !utenteModel.getRuoli().isEmpty())
 			result.ruoliIds = utenteModel.getRuoli().stream().map(r -> r.getId()).collect(Collectors.toList())
