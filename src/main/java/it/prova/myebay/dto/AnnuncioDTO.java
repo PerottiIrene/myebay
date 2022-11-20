@@ -30,6 +30,7 @@ public class AnnuncioDTO {
 	
 	private Utente utenteInserimento;
 	private Set<Categoria> categorie=new HashSet<>();
+	private Long[] categorieIds;
 	
 	public AnnuncioDTO() {}
 	
@@ -52,6 +53,16 @@ public class AnnuncioDTO {
 		this.data = data;
 		this.utenteInserimento = utenteInserimento;
 		this.categorie = categorie;
+	}
+	
+	public AnnuncioDTO(Long id, String testoAnnuncio,Integer prezzo, boolean aperto,Date data,Utente utenteInserimento) {
+		super();
+		this.id = id;
+		this.testoAnnuncio = testoAnnuncio;
+		this.prezzo = prezzo;
+		this.aperto = aperto;
+		this.data = data;
+		this.utenteInserimento = utenteInserimento;
 	}
 
 	public Long getId() {
@@ -109,9 +120,22 @@ public class AnnuncioDTO {
 	public void setCategorie(Set<Categoria> categorie) {
 		this.categorie = categorie;
 	}
+	
+	public Long[] getCategorieIds() {
+		return categorieIds;
+	}
 
-	public static AnnuncioDTO buildAnnuncioDTOFromModel(Annuncio annuncioModel) {
-		return new AnnuncioDTO(annuncioModel.getId(), annuncioModel.getTestoAnnuncio(), annuncioModel.getPrezzo(),annuncioModel.isAperto(),annuncioModel.getData(),annuncioModel.getUtenteInserimento(),annuncioModel.getCategorie());
+	public void setCategorieIds(Long[] categorieIds) {
+		this.categorieIds = categorieIds;
+	}
+
+	public static AnnuncioDTO buildAnnuncioDTOFromModel(Annuncio annuncioModel,boolean includeCategorie) {
+		AnnuncioDTO result= new AnnuncioDTO(annuncioModel.getId(), annuncioModel.getTestoAnnuncio(), annuncioModel.getPrezzo(),annuncioModel.isAperto(),annuncioModel.getData(),annuncioModel.getUtenteInserimento());
+		
+		if (annuncioModel.getCategorie() != null && includeCategorie && !annuncioModel.getCategorie().isEmpty())
+			result.categorieIds = annuncioModel.getCategorie().stream().map(r -> r.getId()).collect(Collectors.toList())
+					.toArray(new Long[] {});
+		return result;
 	}
 	
 	public Annuncio buildAnnuncioModel() {
@@ -120,7 +144,7 @@ public class AnnuncioDTO {
 
 	public static List<AnnuncioDTO> createAnnuncioDTOListFromModelList(List<Annuncio> modelListInput) {
 		return modelListInput.stream().map(annuncioEntity -> {
-			return AnnuncioDTO.buildAnnuncioDTOFromModel(annuncioEntity);
+			return AnnuncioDTO.buildAnnuncioDTOFromModel(annuncioEntity,false);
 		}).collect(Collectors.toList());
 	}
 

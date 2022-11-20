@@ -17,5 +17,9 @@ public interface AnnuncioService {
 	public void rimuovi(Long idToDelete);
 
 	public List<Annuncio> findByExample(Annuncio example);
+	
+	public List<Annuncio> findByExampleEager(Annuncio example);
+	
+	public Annuncio caricaSingoloAnnuncioEager(Long id);
 
 }

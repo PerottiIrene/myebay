@@ -33,7 +33,6 @@ public class AnnuncioController {
 	@PostMapping("/list")
 	public ModelAndView listAnnuncio(Annuncio annuncioExample) {
 		ModelAndView mv = new ModelAndView();
-		System.out.println(annuncioExample.getCategorie().isEmpty());
 		mv.addObject("annuncio_list_attribute",
 				AnnuncioDTO.createAnnuncioDTOListFromModelList(annuncioService.findByExample(annuncioExample)));
 		mv.setViewName("annuncio/list");
@@ -43,7 +42,7 @@ public class AnnuncioController {
 	@GetMapping("/show/{idAnnuncio}")
 	public String showUtente(@PathVariable(required = true) Long idAnnuncio, Model model) {
 		
-		AnnuncioDTO annuncioResult=AnnuncioDTO.buildAnnuncioDTOFromModel(annuncioService.caricaSingoloAnnuncio(idAnnuncio));
+		AnnuncioDTO annuncioResult=AnnuncioDTO.buildAnnuncioDTOFromModel(annuncioService.caricaSingoloAnnuncio(idAnnuncio),true);
 		model.addAttribute("show_annuncio_attr", annuncioResult);
 		return "annuncio/show";
 	}

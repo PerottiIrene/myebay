@@ -47,4 +47,14 @@ public class AnnuncioServiceImpl implements AnnuncioService{
 		return annuncioRepository.findByExample(example);
 	}
 
+	@Override
+	public List<Annuncio> findByExampleEager(Annuncio example) {
+		return annuncioRepository.findByExampleEagerUtente(example);
+	}
+
+	@Override
+	public Annuncio caricaSingoloAnnuncioEager(Long id) {
+		return annuncioRepository.caricaSingoloAnnuncioEager(id);
+	}
+
 }
