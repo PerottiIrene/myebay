@@ -121,7 +121,6 @@ public class UtenteController {
 		
 		UtenteDTO utenteResult=UtenteDTO.buildUtenteDTOFromModel(utenteService.caricaSingoloUtenteConRuoli(idUtente), true);
 		model.addAttribute("show_utente_attr", utenteResult);
-		System.out.println(utenteResult.getRuoli().size());
 		return "utente/show";
 	}
 

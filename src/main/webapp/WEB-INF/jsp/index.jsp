@@ -71,7 +71,7 @@
 				    </div>
 				    <div class='card-body'>
 		
-							<form method="post" action="${pageContext.request.contextPath}/annuncio/search" class="row g-3" >
+							<form method="post" action="${pageContext.request.contextPath}/annuncio/list" class="row g-3" >
 							
 							
 								<div class="col-md-6">
@@ -84,6 +84,7 @@
 									<input type="number" name="prezzo" id="prezzo" class="form-control" placeholder="Inserire il prezzo"  >
 								</div>
 							
+								<label for="prezzo" class="form-label">Categorie:</label>
 							<div class="form-check">
 							<c:forEach items="${categorie }" var="categorieItem">
 							 <input class="form-check-input" type="checkbox" name="categorie" value="${categorieItem.id }"  >${categorieItem.descrizione}<br>

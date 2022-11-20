@@ -63,7 +63,7 @@ public class CategoriaDTO {
 		return new Categoria(this.id, this.codice, this.descrizione, this.annunci);
 	}
 	
-	public static List<CategoriaDTO> createAnnuncioDTOListFromModelList(List<Categoria> modelListInput) {
+	public static List<CategoriaDTO> createCategoriaDTOListFromModelList(List<Categoria> modelListInput) {
 		return modelListInput.stream().map(categoriaEntity -> {
 			return CategoriaDTO.buildCategoriaDTOFromModel(categoriaEntity);
 		}).collect(Collectors.toList());
