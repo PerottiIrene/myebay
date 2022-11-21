@@ -52,7 +52,7 @@
 					
 							
 								<div class="col-md-6">
-									<label for="nome" class="form-label">Testo annuncio <span class="text-danger">*</span></label>
+									<label for="testoAnnuncio" class="form-label">Testo annuncio <span class="text-danger">*</span></label>
 									<spring:bind path="testoAnnuncio">
 										<input type="text" name="testoAnnuncio" id="testoAnnuncio" class="form-control ${status.error ? 'is-invalid' : ''}" placeholder="Inserire il nome" value="${insert_annuncio_attr.testoAnnuncio }" required>
 									</spring:bind>
@@ -60,7 +60,7 @@
 								</div>
 								
 								<div class="col-md-6">
-									<label for="cognome" class="form-label">Prezzo <span class="text-danger">*</span></label>
+									<label for="prezzo" class="form-label">Prezzo <span class="text-danger">*</span></label>
 									<spring:bind path="prezzo">
 										<input type="text" name="prezzo" id="prezzo" class="form-control ${status.error ? 'is-invalid' : ''}" placeholder="Inserire il cognome" value="${insert_annuncio_attr.prezzo }" required>
 									</spring:bind>
@@ -80,7 +80,7 @@
 								</div>
 
 								
-									<label for="prezzo" class="form-label">Categorie:</label>
+									<label for="categorie" class="form-label">Categorie:</label>
 							<div class="form-check">
 							<c:forEach items="${categorie_totali_attr}" var="categorieItem">
 							 <input class="form-check-input" type="checkbox" name="categorie" value="${categorieItem.id }"  >${categorieItem.descrizione}<br>

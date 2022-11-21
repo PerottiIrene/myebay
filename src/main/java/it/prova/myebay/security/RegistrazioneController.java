@@ -60,7 +60,7 @@ public class RegistrazioneController {
 		utenteDTO.getRuoli().add(RuoloDTO.buildRuoloDTOFromModel(ruolo));
 		utenteService.inserisciNuovo(utenteDTO.buildUtenteModel(true));
 
-		redirectAttrs.addFlashAttribute("successMessage", "Registrazione eseguita correttamente");
+		model.addAttribute("infoMessage", "Registrazione eseguita correttamente");
 		return "login";
 	}
 
