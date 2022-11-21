@@ -38,6 +38,8 @@ public class UtenteDTO {
 	private String cognome;
 
 	private Date dateCreated;
+	
+	private Integer creditoResiduo;
 
 	private StatoUtente stato;
 
@@ -145,6 +147,14 @@ public class UtenteDTO {
 
 	public void setRuoli(Set<RuoloDTO> ruoli) {
 		this.ruoli = ruoli;
+	}
+	
+	public Integer getCreditoResiduo() {
+		return creditoResiduo;
+	}
+
+	public void setCreditoResiduo(Integer creditoResiduo) {
+		this.creditoResiduo = creditoResiduo;
 	}
 
 	public boolean isAttivo() {

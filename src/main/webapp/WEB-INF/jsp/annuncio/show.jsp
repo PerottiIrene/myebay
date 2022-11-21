@@ -49,11 +49,11 @@
 			    <!-- end card body -->
 			    </div>
 			    
-			    <div class='card-footer'>
-			        <a href="${pageContext.request.contextPath }/annuncio/compra" class='btn btn-outline-secondary' style='width:80px'>
-			            <i class='fa fa-chevron-left'></i> Compra
-			        </a>
-			    </div>
+			   <div class='card-footer'>
+					<form action="${pageContext.request.contextPath}/annuncio/compra" method="post">
+					<input type="hidden" name="idAnnuncio" value="${show_annuncio_attr.id}">
+					 	<button type="submit" name="submit" value="submit" id="submit" class="btn btn-primary">Compra</button>
+					 	</form>
 			    
 			    <div class='card-footer'>
 			        <a href="${pageContext.request.contextPath }/annuncio/list" class='btn btn-outline-secondary' style='width:80px'>
