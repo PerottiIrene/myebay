@@ -45,6 +45,11 @@
 	    	 <a href="${pageContext.request.contextPath}/logout">Logout</a></p>
 	      </div>
       </sec:authorize>
+       <sec:authorize access="!isAuthenticated()">
+        	<div class="col-md-3 text-end">
+	    		 <a class="text-white" href="${pageContext.request.contextPath}/login">Login</a>
+	    	</div>
+        </sec:authorize>
     </div>
   </nav>
   

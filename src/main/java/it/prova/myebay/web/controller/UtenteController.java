@@ -1,6 +1,5 @@
 package it.prova.myebay.web.controller;
 
-import javax.naming.spi.DirStateFactory.Result;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -123,5 +122,5 @@ public class UtenteController {
 		model.addAttribute("show_utente_attr", utenteResult);
 		return "utente/show";
 	}
-
+	
 }

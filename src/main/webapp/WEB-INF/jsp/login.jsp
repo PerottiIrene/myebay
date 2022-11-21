@@ -20,6 +20,10 @@
 				  ${errorMessage}
 				</div>
 				
+					<div class="alert alert-success alert-dismissible fade show ${successMessage==null?'d-none': ''}" role="alert">
+				  ${successMessage}
+				</div>
+				
 				<div class="alert alert-info alert-dismissible fade show ${infoMessage==null?'d-none': ''}" role="alert">
 				  ${infoMessage}
 				</div>
@@ -43,10 +47,10 @@
 			        <input type="checkbox" value="remember-me"> Remember me
 			      </label>
 			    </div>
-			    <button class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
+			    <button class="w-100 btn btn-lg btn-primary mb-2" type="submit">Sign in</button>
+			      <a class="btn btn-sm btn-outline-secondary  mb-2" href="${pageContext.request.contextPath}/home">Vai alla home senza accedere</a>
+				<a class="btn btn-sm btn-outline-secondary  mb-2" href="${pageContext.request.contextPath}/prepareRegistrazione">Registrati</a>
 			    <p class="mt-5 mb-3 text-muted">&copy; 2017-2021</p>
-			  
-			  
 			  
 			</form>
 		</main>

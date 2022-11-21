@@ -44,8 +44,6 @@ public class CustomAnnuncioRepositoryImpl implements CustomAnnuncioRepository {
 		queryBuilder.append(StringUtils.join(whereClauses, " and "));
 		TypedQuery<Annuncio> typedQuery = entityManager.createQuery(queryBuilder.toString(), Annuncio.class);
 
-		System.out.println(queryBuilder.toString());
-		
 		for (String key : paramaterMap.keySet()) {
 			typedQuery.setParameter(key, paramaterMap.get(key));
 		}

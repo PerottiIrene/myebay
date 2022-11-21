@@ -42,7 +42,7 @@ public class AnnuncioController {
 		return mv;
 	}
 	
-	@PostMapping("/list")
+	@RequestMapping("/list")
 	public ModelAndView listAnnuncio(Annuncio annuncioExample) {
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("annuncio_list_attribute",
@@ -61,13 +61,12 @@ public class AnnuncioController {
 	
 	@PostMapping("/compra")
 	public String compra(@RequestParam Long idAnnuncio, Model model, RedirectAttributes redirectAttrs,HttpServletRequest request) {
-		System.out.println("passo di qua");
 		AnnuncioDTO annuncioDaComprare=AnnuncioDTO.buildAnnuncioDTOFromModel(annuncioService.caricaSingoloAnnuncio(idAnnuncio),true);
 		UtenteDTO utenteInSessione = (UtenteDTO) request.getSession().getAttribute("userInfo");
 		annuncioDaComprare.setUtenteInserimento(utenteInSessione.buildUtenteModel(false));
 		
 		if(annuncioDaComprare.getPrezzo() > utenteInSessione.getCreditoResiduo()) {
-			redirectAttrs.addFlashAttribute("errorMessage", "Attenzione, il credito residuo e' inferiore al prezzo del prodotto");
+			redirectAttrs.addFlashAttribute("errorMessage", "Attenzione, credito insufficiente");
 			return "redirect:/annuncio/list";
 		}
 
