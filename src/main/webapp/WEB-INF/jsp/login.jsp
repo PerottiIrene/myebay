@@ -48,8 +48,8 @@
 			      </label>
 			    </div>
 			    <button class="w-100 btn btn-lg btn-primary mb-2" type="submit">Sign in</button>
-			      <a class="btn btn-sm btn-outline-secondary  mb-2" href="${pageContext.request.contextPath}/home">Vai alla home senza accedere</a>
-				<a class="btn btn-sm btn-outline-secondary  mb-2" href="${pageContext.request.contextPath}/prepareRegistrazione">Registrati</a>
+			      <a class="btn btn-sm btn-outline-primary  mb-2" href="${pageContext.request.contextPath}/home">Vai alla home senza accedere</a>
+				<a class="btn btn-sm btn-outline-primary  mb-2" href="${pageContext.request.contextPath}/prepareRegistrazione" style='width:200px'>Registrati</a>
 			    <p class="mt-5 mb-3 text-muted">&copy; 2017-2021</p>
 			  
 			</form>

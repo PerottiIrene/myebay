@@ -63,6 +63,11 @@ public class AnnuncioController {
 	public String compra(@RequestParam Long idAnnuncio, Model model, RedirectAttributes redirectAttrs,HttpServletRequest request) {
 		AnnuncioDTO annuncioDaComprare=AnnuncioDTO.buildAnnuncioDTOFromModel(annuncioService.caricaSingoloAnnuncio(idAnnuncio),true);
 		UtenteDTO utenteInSessione = (UtenteDTO) request.getSession().getAttribute("userInfo");
+		
+		if(utenteInSessione == null) {
+			redirectAttrs.addFlashAttribute("errorMessage", "Attenzione, accedi per effettuare acquisti ");
+			return "redirect:/login";
+		}
 		annuncioDaComprare.setUtenteInserimento(utenteInSessione.buildUtenteModel(false));
 		
 		if(annuncioDaComprare.getPrezzo() > utenteInSessione.getCreditoResiduo()) {

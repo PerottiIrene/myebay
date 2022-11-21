@@ -50,15 +50,16 @@
 			    </div>
 			    
 			   <div class='card-footer'>
-					<form action="${pageContext.request.contextPath}/annuncio/compra" method="post">
+					<form action="${pageContext.request.contextPath}/annuncio/compra " method="post">
 					<input type="hidden" name="idAnnuncio" value="${show_annuncio_attr.id}">
-					 	<button type="submit" name="submit" value="submit" id="submit" class="btn btn-primary">Compra</button>
-					 	</form>
+					 	<button type="submit" name="submit" value="submit" id="submit" class="btn btn-success">Compra</button>
+					 	
 			    
-			    <div class='card-footer'>
+			  
 			        <a href="${pageContext.request.contextPath }/annuncio/list" class='btn btn-outline-secondary' style='width:80px'>
 			            <i class='fa fa-chevron-left'></i> Back
 			        </a>
+			          </form>
 			    </div>
 			<!-- end card -->
 			</div>	
