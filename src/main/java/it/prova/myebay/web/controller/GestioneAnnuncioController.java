@@ -152,9 +152,9 @@ public class GestioneAnnuncioController {
 	}
 
 	@PostMapping("/executeDelete")
-	public String executeDelete(@RequestParam Long idAnnuncio, Model model, RedirectAttributes redirectAttrs,AnnuncioDTO annuncioDTO) {
+	public String executeDelete(@RequestParam Long idAnnuncio, Model model, RedirectAttributes redirectAttrs) {
 		
-		annuncioService.rimuovi(annuncioDTO.getId());
+		annuncioService.rimuovi(idAnnuncio);
 
 		redirectAttrs.addFlashAttribute("successMessage", "Operazione eseguita correttamente");
 		return "redirect:/gestioneAnnuncio/list";

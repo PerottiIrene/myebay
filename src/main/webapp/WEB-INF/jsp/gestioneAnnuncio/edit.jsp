@@ -50,6 +50,7 @@
 		
 							<form:form modelAttribute="edit_annuncio_attr" method="post" action="${pageContext.request.contextPath}/gestioneAnnuncio/update" novalidate="novalidate" class="row g-3">
 								<input type="hidden" name="id" value="${edit_annuncio_attr.id }">
+								<input type="hidden" name="data" value="${edit_annuncio_attr.data }">
 							
 								<div class="col-md-6">
 									<label for="testoAnnuncio" class="form-label">Testo annuncio <span class="text-danger">*</span></label>
