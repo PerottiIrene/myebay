@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -78,7 +79,7 @@ public class GestioneAnnuncioController {
 
 	@PostMapping("/update")
 	public String update(
-			@Validated(ValidationNoPassword.class) @ModelAttribute("edit_annuncio_attr") AnnuncioDTO annuncioDTO,
+			@Valid @Validated(ValidationNoPassword.class) @ModelAttribute("edit_annuncio_attr") AnnuncioDTO annuncioDTO,
 			BindingResult result, Model model, RedirectAttributes redirectAttrs, HttpServletRequest request) {
 
 		if (result.hasErrors()) {
@@ -109,8 +110,7 @@ public class GestioneAnnuncioController {
 	// la pwd, nella edit no
 	@PostMapping("/save")
 	public String save(
-			@Validated({ ValidationWithPassword.class,
-					ValidationNoPassword.class }) @ModelAttribute("insert_annuncio_attr") AnnuncioDTO annuncioDTO,
+			@Valid @ModelAttribute("insert_annuncio_attr") AnnuncioDTO annuncioDTO,
 			BindingResult result, Model model, RedirectAttributes redirectAttrs, HttpServletRequest request) {
 
 		if (result.hasErrors()) {
