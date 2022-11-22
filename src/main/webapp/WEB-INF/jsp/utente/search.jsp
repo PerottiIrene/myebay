@@ -52,14 +52,9 @@
                             		title="formato : gg/mm/aaaa"  name="dateCreated" >
 							</div>
 							
-							<div class="col-md-6">
-								<label for="creditoResiduo" class="form-label">credito residuo</label>
-								<input type="number" class="form-control" name="creditoResiduo" id="creditoResiduo" placeholder="Inserire username" >
-							</div>
 							
 							
-							
-							<div class="col-12">	
+						  	<div class="col-12">	
 								<button type="submit" name="submit" value="submit" id="submit" class="btn btn-primary">Conferma</button>
 								<input class="btn btn-outline-warning" type="reset" value="Ripulisci">
 								<a class="btn btn-outline-primary ml-2" href="${pageContext.request.contextPath}/utente/insert">Add New</a>

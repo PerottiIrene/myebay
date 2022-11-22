@@ -1,5 +1,6 @@
 <%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <!doctype html>
 <html lang="it" class="h-100">
 <head>
@@ -50,15 +51,21 @@
 			    </div>
 			    
 			   <div class='card-footer'>
+			    <sec:authorize access="isAuthenticated()">
 					<form action="${pageContext.request.contextPath}/annuncio/compra " method="post">
 					<input type="hidden" name="idAnnuncio" value="${show_annuncio_attr.id}">
 					 	<button type="submit" name="submit" value="submit" id="submit" class="btn btn-success">Compra</button>
-					 	
+					 	  </sec:authorize>
 			    
 			  
 			        <a href="${pageContext.request.contextPath }/annuncio/list" class='btn btn-outline-secondary' style='width:80px'>
 			            <i class='fa fa-chevron-left'></i> Back
+			            
+			            
 			        </a>
+			          <sec:authorize access="!isAuthenticated()">
+							   		<a class="btn btn-success" href="${pageContext.request.contextPath}/annuncio/acquistaWithoutAuth?idAnnuncioWithNoAuth=${show_annuncio_attr.id }">Compra</a> 
+							    </sec:authorize>
 			          </form>
 			    </div>
 			<!-- end card -->
@@ -68,6 +75,8 @@
 		</div>
 		
 	</main>
+	
+	
 	<jsp:include page="../footer.jsp" />
 	
 </body>

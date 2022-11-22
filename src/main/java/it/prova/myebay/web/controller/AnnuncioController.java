@@ -1,5 +1,6 @@
 package it.prova.myebay.web.controller;
 
+import java.security.Principal;
 import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
@@ -91,6 +92,16 @@ public class AnnuncioController {
 		acquistoExample.setUtenteAcquirente(utenteInSessione.buildUtenteModel(false));
 		model.addAttribute("acquisto_list_attr",AcquistoDTO.createAcquistoDTOListFromModelList(acquistoService.findByExampleEager(acquistoExample)));
 		return "redirect:/acquisto/list";
+	}
+	
+	@GetMapping("/acquistaWithoutAuth")
+	public String acquistaWithoutAuth(@RequestParam(required = true) Long idAnnuncioWithNoAuth,
+			Model model, RedirectAttributes redirectAttrs,HttpServletRequest request, Principal principal) {
+		if (principal != null) {
+			return this.compra(idAnnuncioWithNoAuth, model, redirectAttrs, request);
+		}
+		model.addAttribute("idAnnuncioWithNoAuth", idAnnuncioWithNoAuth);
+		return "/login";
 	}
 
 }

@@ -110,7 +110,7 @@ public class GestioneAnnuncioController {
 	// la pwd, nella edit no
 	@PostMapping("/save")
 	public String save(
-			@Valid @ModelAttribute("insert_annuncio_attr") AnnuncioDTO annuncioDTO,
+			 @ModelAttribute("insert_annuncio_attr") AnnuncioDTO annuncioDTO,
 			BindingResult result, Model model, RedirectAttributes redirectAttrs, HttpServletRequest request) {
 
 		if (result.hasErrors()) {
@@ -120,7 +120,7 @@ public class GestioneAnnuncioController {
 		}
 
 		UtenteDTO utenteInSessione = (UtenteDTO) request.getSession().getAttribute("userInfo");
-		annuncioDTO.setUtenteInserimento(utenteInSessione.buildUtenteModel(false));
+		annuncioDTO.setUtenteInserimento(utenteInSessione.buildUtenteModel(true));
 		annuncioDTO.setData(new Date());
 		annuncioService.inserisciNuovo(annuncioDTO.buildAnnuncioModel());
 

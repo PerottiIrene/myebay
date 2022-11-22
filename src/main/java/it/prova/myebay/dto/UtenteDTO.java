@@ -40,6 +40,8 @@ public class UtenteDTO {
 	private Date dateCreated;
 	
 	private Integer creditoResiduo;
+	
+	private String vecchiaPassword;
 
 	private StatoUtente stato;
 
@@ -67,6 +69,14 @@ public class UtenteDTO {
 		this.cognome = cognome;
 		this.stato = stato;
 		this.ruoli = new HashSet<>(ruoli);
+	}
+
+	public UtenteDTO(String password,
+			String confermaPassword, String vecchiaPassword) {
+		super();
+		this.password = password;
+		this.confermaPassword = confermaPassword;
+		this.vecchiaPassword = vecchiaPassword;
 	}
 
 	public Long getId() {
@@ -155,6 +165,14 @@ public class UtenteDTO {
 
 	public void setCreditoResiduo(Integer creditoResiduo) {
 		this.creditoResiduo = creditoResiduo;
+	}
+	
+	public String getVecchiaPassword() {
+		return vecchiaPassword;
+	}
+
+	public void setVecchiaPassword(String vecchiaPassword) {
+		this.vecchiaPassword = vecchiaPassword;
 	}
 
 	public boolean isAttivo() {

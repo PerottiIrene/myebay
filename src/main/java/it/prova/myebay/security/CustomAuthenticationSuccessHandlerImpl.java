@@ -6,6 +6,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.lang3.math.NumberUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -27,6 +29,7 @@ public class CustomAuthenticationSuccessHandlerImpl implements AuthenticationSuc
 	public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
 			Authentication authentication) throws IOException, ServletException {
 		
+		
 		//voglio mettere in sessione uno userInfo perché spring security mette solo un principal da cui attingere username
 		Utente utenteFromDb = utenteRepository.findByUsername(authentication.getName()).orElseThrow(() -> new UsernameNotFoundException("Username " + authentication.getName() + " not found"));
 		UtenteDTO utenteParziale = new UtenteDTO();
@@ -35,6 +38,14 @@ public class CustomAuthenticationSuccessHandlerImpl implements AuthenticationSuc
 		utenteParziale.setId(utenteFromDb.getId());
 		utenteParziale.setCreditoResiduo(utenteFromDb.getCreditoResiduo());
 		request.getSession().setAttribute("userInfo", utenteParziale);
+		
+		String idAnnuncioWithNoAuthParam = request.getParameter("idAnnuncioWithNoAuth");
+		if(StringUtils.isNotBlank(idAnnuncioWithNoAuthParam) && NumberUtils.isCreatable(idAnnuncioWithNoAuthParam)) {
+			Long idAnnuncioWithNoAuth = Long.parseLong(idAnnuncioWithNoAuthParam);
+			response.sendRedirect("/annuncio/show/"+idAnnuncioWithNoAuth);
+			return;
+		}
+
 		response.sendRedirect("home");
 
 	}

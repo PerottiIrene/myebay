@@ -97,7 +97,7 @@ public class UtenteController {
 	}
 
 	@PostMapping("/update")
-	public String update(@Valid @Validated(ValidationNoPassword.class) @ModelAttribute("edit_utente_attr") UtenteDTO utenteDTO,
+	public String update( @Validated(ValidationNoPassword.class) @Valid @ModelAttribute("edit_utente_attr") UtenteDTO utenteDTO,
 			BindingResult result, Model model, RedirectAttributes redirectAttrs, HttpServletRequest request) {
 
 		if (result.hasErrors()) {

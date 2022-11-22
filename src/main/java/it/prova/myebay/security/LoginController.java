@@ -3,6 +3,7 @@ package it.prova.myebay.security;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.DisabledException;
 import org.springframework.security.authentication.LockedException;
@@ -15,8 +16,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import it.prova.myebay.service.AnnuncioService;
+
 @Controller
 public class LoginController {
+	
+	@Autowired
+	private AnnuncioService annuncioService;
 
 	@RequestMapping(value = "/login", method = {RequestMethod.POST,RequestMethod.GET})
 	public String loginPage(@RequestParam(value = "error", required = false) String error,
@@ -65,5 +71,7 @@ public class LoginController {
 		model.addAttribute("errorMessage", "Attenzione! Non si dispone delle autorizzazioni per accedere alla funzionalità richiesta.");
 		return "index";
 	}
+	
+	
 
 }
