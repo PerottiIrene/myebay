@@ -124,4 +124,12 @@ public class UtenteController {
 		return "utente/show";
 	}
 	
+	@PostMapping("/resetPassword")
+	public String resetPassword(@RequestParam(name = "idUtenteForChangingPassword", required = true) Long idUtente, RedirectAttributes redirectAttrs) {
+		System.out.println(idUtente);
+		utenteService.resettaPassword(idUtente);
+		redirectAttrs.addFlashAttribute("successMessage", "Operazione eseguita correttamente");
+		return "redirect:/utente";
+	}
+	
 }

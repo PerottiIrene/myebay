@@ -13,6 +13,7 @@ import javax.persistence.TypedQuery;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -31,6 +32,9 @@ public class UtenteServiceImpl implements UtenteService{
 	
 	@Autowired
 	private PasswordEncoder passwordEncoder;
+	
+	@Value( "${utente.password.reset.value}" )
+	private String password;
 
 	@Transactional(readOnly = true)
 	public List<Utente> listAllUtenti() {
@@ -111,6 +115,14 @@ public class UtenteServiceImpl implements UtenteService{
 	@Override
 	public void cambiaPassword(Utente utenteInstance,PasswordDTO passwordDTO) {
 		utenteInstance.setPassword(passwordEncoder.encode(passwordDTO.getNuovaPassword()));
+		
+		repository.save(utenteInstance);
+	}
+
+	@Override
+	public void resettaPassword(Long utenteInstanceId) {
+		Utente utenteInstance=caricaSingoloUtente(utenteInstanceId);
+		utenteInstance.setPassword(passwordEncoder.encode(password));
 		
 		repository.save(utenteInstance);
 	}

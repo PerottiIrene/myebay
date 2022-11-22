@@ -31,5 +31,7 @@ public interface UtenteService {
 	public Utente findByUsername(String username);
 	
 	public void cambiaPassword(Utente utenteInstance,PasswordDTO passwordDTO);
+	
+	public void resettaPassword(Long utenteInstanceId);
 
 }
